@@ -1,0 +1,15 @@
+<div class="col-lg-6 col-lg-offset-3">
+  <div class="well bs-component">
+    <h3 class="welcome-msg col-lg-offset-3">Log in</h3>
+      <p id="notice" class="col-lg-offset-3"><%= flash[:notice] %></p>
+      
+      <%= form_tag sessions_path, :method => 'post' do %>
+
+                  
+
+      <% end -%>
+
+
+      <p class="col-lg-offset-3">Don't have an account with us? <%=link_to "Sign up!", signup_path%></p>
+  </div>
+</div>
