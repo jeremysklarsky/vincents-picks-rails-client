@@ -3,13 +3,16 @@
     <h3 class="welcome-msg col-lg-offset-3">Log in</h3>
       <p id="notice" class="col-lg-offset-3"><%= flash[:notice] %></p>
       
-      <%= form_tag sessions_path, :method => 'post' do %>
+      <%= form_tag sessions_path, :id=>'signin-form', :method => 'post' do %>
 
-                  
+        <%= label_tag('session[email]', "Email: ") %><br>            
+        <%= email_field_tag 'session[email]'%><br>
+        <%= label_tag('session[password]', "Password: ") %><br>            
+        <%= password_field_tag 'session[password]'%><br>
+
+        <%= submit_tag "Log In", class: "btn btn-primary", id:"login" %>
 
       <% end -%>
 
-
-      <p class="col-lg-offset-3">Don't have an account with us? <%=link_to "Sign up!", signup_path%></p>
   </div>
 </div>

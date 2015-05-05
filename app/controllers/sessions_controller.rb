@@ -4,24 +4,28 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = User.find_by(:email => params[:user][:email]).try(:authenticate, params[:user][:password])
-    if @user 
-      login(@user)
-      if session[:dinner_path]
-        redirect_to session[:dinner_path]
-      else
-        flash[:notice] = "Successfully logged in. Welcome #{@user.name}!"
-        redirect_to root_path
-      end
-    else
-      flash.now[:notice] = "User name or password is not valid."
-      render 'new'
+    uri = "#{API_BASE_URL}/sessions"
+    # converting the params to json
+    payload = params.to_json 
+    rest_resource = RestClient::Resource.new(uri) 
+    begin
+      
+      rest_resource.post payload , :content_type => "application/json"
+      binding.pry
+      @user= JSON.parse(RestClient.get("#{API_BASE_URL}/users/#{params[:id]}", {:accept => :json})).symbolize_keys
+      flash[:notice] = "Login Successful"
+      
+    rescue Exception => e
+      binding.pry
+     flash[:error] = "Login Failed"
+     render :new
     end
   end
 
+
   def destroy
-    reset_session
-    redirect_to root_path
+    # reset_session
+    # redirect_to root_path
   end
 
 end

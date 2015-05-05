@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   API_BASE_URL = "http://localhost:3000/api"
+  BASE_URL = "http://localhost:3000"
 
   private
     def login(user)
