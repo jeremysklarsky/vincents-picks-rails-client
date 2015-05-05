@@ -11,10 +11,8 @@ class UsersController < ApplicationController
   def create
     uri = "#{API_BASE_URL}/users"
     # converting the params to json
-    binding.pry
     payload = params.to_json 
     rest_resource = RestClient::Resource.new(uri)
-    binding.pry
     begin
       rest_resource.post payload , :content_type => "application/json"
       flash[:notice] = "User Saved successfully"
@@ -23,10 +21,6 @@ class UsersController < ApplicationController
      flash[:error] = "User Failed to save"
      render :new
     end
-
-
-
-    
   end
 
 end
