@@ -16,7 +16,7 @@ function addSubmitLoginListener(){
       var url = "http://localhost:3000/api/sessions"
       var email = $('#session_email').val();
       var password = $('#session_password').val();
-      var data =  'email: jeremy.sklarsky@gmail.com, password:             64Whytedrive'
+      var data =  'email: jeremy.sklarsky@gmail.com, password:             '
 
         $.ajax({
         beforeSend: function(xhr) {
